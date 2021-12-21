@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Counter from './Counter'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Buttons = ({ increment, decrement, count }) => (
+  <div>
+      <h1>Valor atual: {count}</h1>
+      <div>
+        <button onClick={increment}>Adicionar 1</button>
+      </div>
+      <div>
+        <button onClick={decrement}>Remover 1</button>
+      </div>
+  </div>
+)
+
+class App extends Component {
+
+  render () {
+    return (
+      <div>
+        <Counter render={
+          ({ increment, decrement, count }) => (
+            <Buttons
+              increment={increment}
+              decrement={decrement}
+              count={count}
+            />
+          )
+        }>
+
+        </Counter>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
